@@ -5,11 +5,11 @@ Software Engineering 1 (Group 6) Project
 # TEAM 
 
 TEAM: 
-Franklin,  Leader, Developer
-Raul, Developer 
-Aldo, Support, Use Case Admin 
-Vere, Support, StarUML dev 
-Kenneth, Support, Graphics 
+-Franklin,  Leader, Developer
+-Raul, Developer 
+-Aldo, Support, Use Case Admin 
+-Vere, Support, StarUML dev 
+-Kenneth, Support, Graphics 
 
 
 GOAL: 
