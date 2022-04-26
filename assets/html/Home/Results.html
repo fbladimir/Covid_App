@@ -1,0 +1,210 @@
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		<title>Results</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<link rel="stylesheet" href="../../css/dashboardStyle.css" />
+	</head>
+	<body class="is-preload">
+
+		<!-- Header -->
+			<header id="header">
+				<a class="logo" href="../DashboardPage.html">Go Back</a>
+				<nav>
+					<a href="#menu">Menu</a>
+				</nav>
+			</header>
+
+		<!-- Nav -->
+			<nav id="menu">
+				<ul class="links">
+					<li><a href="../DashboardPage.html">Home</a></li>
+					<li><a href="Patients.html">Patients</a></li>
+					<li><a href="Appointments.html">Appointments</a></li>
+					<li><a href="Results.html">Results</a></li>
+					<li><a href="Symptoms.html">Symptoms</a></li>
+					<li><a href="generic.html">Notes</a></li>
+					<li><a href="generic.html">Settings</a></li>
+					<li><a href="../../../index.html">Log Out</a></li>
+				</ul>
+			</nav>
+
+		<!-- Heading -->
+			<div id="heading" >
+				<h1>Check Results</h1>
+			</div>
+
+		<!-- Main -->
+			<section id="main" class="wrapper">
+				<div class="inner">
+					<div class="content">
+						<header>
+							<h2>Results for the Covid-19 Test:</h2>
+						</header>
+						<!-- <p>Add / Edit Patients as Needed:</p> -->
+
+
+
+
+						<!-- Form -->
+							<h3>Set or Get the Results:</h3>
+							<form method="post" action="#">
+								<div class="row gtr-uniform">
+									<!-- <div class="col-4 col-8-xsmall">
+										<input type="text" name="patientID" id="patientID" value="" placeholder="Patient ID" />
+									</div> -->
+									<div class="col-6">
+										<select name="category" id="category">
+											<option value="">- Select Patient ID -</option>
+											<option value="alpha">GG56Y8</option>
+											<option value="beta">YT65IO</option>
+											<option value="gamma">EROK76</option>
+											<option value="delta">OJ76GB</option>
+											<option value="epsilon">UJHY6T</option>
+											<option value="zeta">NB65TG</option>
+											<option value="eta">IUAW45</option>
+											<option value="theta">AHBJ76</option>
+										</select>
+									</div>
+									<div class="col-6">
+
+									</div>
+
+									<!--
+									<div class="col-6 col-12-xsmall">
+										<input type="email" name="email" id="email" value="" placeholder="Test Result" />
+									</div>
+								-->
+
+									<div class="col-2 col-6-small">
+										<input type="radio" id="radio-alpha" name="radio" checked>
+										<label for="radio-alpha">Positive</label>
+									</div>
+									<div class="col-2 col-6-small">
+										<input type="radio" id="radio-beta" name="radio">
+										<label for="radio-beta">Negative</label>
+									</div>
+									<div class="col-2 col-6-small">
+										<input type="radio" id="radio-gamma" name="radio">
+										<label for="radio-gamma">Pending</label>
+									</div>
+
+
+
+									<div class="col-12">
+										<ul class="actions">
+											<li><input type="submit" value="Add Result" class="primary" /></li>
+											<li><input type="reset" value="Get Result" /></li>
+											<li><input type="reset" value="Update Result" /></li>
+											<li><input type="reset" value="Delete Result" /></li>
+											<li><input type="reset" value="Reset" /></li>
+										</ul>
+									</div>
+								</div>
+							</form>
+
+
+						<!-- Table -->
+							<div class="table-wrapper">
+								<table class="alt">
+									<thead>
+										<tr>
+											<th>ID</th>
+											<th>Appointment Date</th>
+											<th>Test Result</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>GG56Y8</td>
+											<td>10 November 2020, 8:00 AM</td>
+											<td>Positive</td>
+										</tr>
+										<tr>
+											<td>YT65IO</td>
+											<td>10 November 2020, 10:00 AM</td>
+											<td>Positive</td>
+										</tr>
+										<tr>
+											<td>EROK76</td>
+											<td>11 November 2020, 8:00 AM</td>
+											<td>Negative</td>
+										</tr>
+										<tr>
+											<td>OJ76GB</td>
+											<td>12 November 2020, 11:00 AM</td>
+											<td>Positive</td>
+										</tr>
+										<tr>
+											<td>UJHY6T</td>
+											<td>14 November 2020, 2:00 PM</td>
+											<td>Negative</td>
+										</tr>
+										<tr>
+											<td>NB65TG</td>
+											<td>14 November 2020, 3:30 PM</td>
+											<td>Negative</td>
+										</tr>
+										<tr>
+											<td>IUAW45</td>
+											<td>15 November 2020, 8:00 AM</td>
+											<td>Pending</td>
+										</tr>
+										<tr>
+											<td>AHBJ76</td>
+											<td>15 November 2020, 11:30 AM</td>
+											<td>Pending</td>
+										</tr>
+									</tbody>
+									<tfoot>
+										<tr>
+											<td colspan="2"></td>
+										</tr>
+									</tfoot>
+								</table>
+							</div>
+
+					</div>
+					<div class="col-6 col-12-medium">
+						<!-- <p>-> Symptoms may appear 2-14 days after exposure to the virus. People with these symptoms may have COVID-19:</p>
+						<ul>
+  						<li>Fever or chills</li>
+  						<li>Cough</li>
+  						<li>Shortness of breath or difficulty breathing</li>
+							<li>Fatigue</li>
+  						<li>Muscle or body aches</li>
+  						<li>Headache</li>
+							<li>New loss of taste or smell</li>
+  						<li>Sore throat</li>
+  						<li>Congestion or runny nose</li>
+							<li>Nausea or vomiting</li>
+  						<li>Diarrhea</li>
+						</ul>
+						<hr />
+						<h3>Emergency Warning Signs</h3>
+						<p>Look for emergency warning signs for COVID-19. If someone is showing any of these signs, seek emergency medical care immediately:</p>
+						<ul>
+  						<li>Trouble breathing</li>
+  						<li>Persistent pain or pressure in the chest</li>
+  						<li>New confusion</li>
+							<li>Inability to wake or stay awake</li>
+  						<li>Bluish lips or face</li>
+						</ul>
+						<p>Call your medical provider for any other symptoms that are severe or concerning to you.</p>  -->
+					</div>
+				</div>
+			</section>
+
+		<!-- Scripts -->
+			<script src="../../js/jquery.min.js"></script>
+			<script src="../../js/browser.min.js"></script>
+			<script src="../../js/breakpoints.min.js"></script>
+			<script src="../../js/util.js"></script>
+			<script src="../../js/main2.js"></script>
+
+	</body>
+</html>

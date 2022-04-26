@@ -1,0 +1,453 @@
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		<title>Patients</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<link rel="stylesheet" href="../../css/dashboardStyle.css" />
+	</head>
+	<body class="is-preload">
+
+		<!-- The core Firebase JS SDK is always required and must be listed first -->
+	  <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase.js"></script>
+
+	  <!-- TODO: Add SDKs for Firebase products that you want to use
+	       https://firebase.google.com/docs/web/setup#available-libraries -->
+	  <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-analytics.js"></script>
+
+	  <script>
+	    // Your web app's Firebase configuration
+	    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+	    var firebaseConfig = {
+	      apiKey: "AIzaSyAjW5prWHsUS02zR2Y23j1c52RkCeLMKzA",
+	      authDomain: "covid19datahelper.firebaseapp.com",
+	      databaseURL: "https://covid19datahelper.firebaseio.com",
+	      projectId: "covid19datahelper",
+	      storageBucket: "covid19datahelper.appspot.com",
+	      messagingSenderId: "475141461931",
+	      appId: "1:475141461931:web:235887f78049b9ae0224ee",
+	      measurementId: "G-LNCWFJ567R"
+	    };
+	    // Initialize Firebase
+	    firebase.initializeApp(firebaseConfig);
+	    firebase.analytics();
+
+	    </script>
+
+		<!-- Header -->
+			<header id="header">
+				<a class="logo" href="../DashboardPage.html">Go Back</a>
+				<nav>
+					<a href="#menu">Menu</a>
+				</nav>
+			</header>
+
+		<!-- Nav -->
+			<nav id="menu">
+				<ul class="links">
+					<li><a href="../DashboardPage.html">Home</a></li>
+					<li><a href="#">Patients</a></li>
+					<li><a href="Appointments.html">Appointments</a></li>
+					<li><a href="Results.html">Results</a></li>
+					<li><a href="Symptoms.html">Symptoms</a></li>
+					<li><a href="generic.html">Notes</a></li>
+					<li><a href="generic.html">Settings</a></li>
+					<li><a href="../../../index.html">Log Out</a></li>
+				</ul>
+			</nav>
+
+		<!-- Heading -->
+			<div id="heading" >
+				<h1>Patients - Add / Edit</h1>
+			</div>
+
+		<!-- Main -->
+			<section id="main" class="wrapper">
+				<div class="inner">
+					<div class="content">
+						<header>
+							<h2>Patients - People that have symptoms</h2>
+						</header>
+						<!-- <p>Add / Edit Patients as Needed:</p> -->
+
+
+
+
+						<!-- Form -->
+							<h3>Add Patients:</h3>
+							<form method="post" action="#">
+								<div class="row gtr-uniform">
+									<div class="col-4 col-8-xsmall">
+										<input type="text" name="patientID" id="patientIDTextField" value="" placeholder="Patient ID" />
+									</div>
+									<div class="col-4 col-8-xsmall">
+										<input type="text" name="name" id="patientFullNameTextField" value="" placeholder="Full Name" />
+									</div>
+									<div class="col-4 col-8-xsmall">
+										<input type="email" name="email" id="patientSymptomsTextField" value="" placeholder="Symptoms" />
+									</div>
+
+									<div class="col-12">
+										<ul class="actions">
+											<li><input type="button" id="addPatientBtn" value="Add Patient" class="primary" /></li>
+											<li><input type="button" id="getPatientBtn" value="Get Patient" /></li>
+											<li><input type="button" id="updatePatientBtn" value="Update Patient" /></li>
+											<li><input type="button" id="deletePatientBtn" value="Delete Patient" /></li>
+											<li><input type="button" id="resetBtn" value="Reset" /></li>
+											<li><input type="button" id="refreshTableBtn" value="Refresh Table" class="primary"/></li>
+										</ul>
+									</div>
+								</div>
+							</form>
+
+
+						<!-- Table -->
+						<!--
+							<div class="table-wrapper">
+								<table class="alt">
+									<thead>
+										<tr>
+											<th>ID</th>
+											<th>Full Name</th>
+											<th>Symptoms</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>GG56Y8</td>
+											<td>Robert Garcia</td>
+											<td>Fever</td>
+										</tr>
+										<tr>
+											<td>YT65IO</td>
+											<td>Peter Rodriguez</td>
+											<td>Strong Headaches</td>
+										</tr>
+										<tr>
+											<td>EROK76</td>
+											<td>Milena Cash</td>
+											<td>Fatigue and Headaches</td>
+										</tr>
+										<tr>
+											<td>OJ76GB</td>
+											<td>Gabija Quintana</td>
+											<td>Cough</td>
+										</tr>
+										<tr>
+											<td>UJHY6T</td>
+											<td>Brielle Newton</td>
+											<td>Muscle and Body Aches</td>
+										</tr>
+										<tr>
+											<td>NB65TG</td>
+											<td>Patsy Woodward</td>
+											<td>Sore Throat</td>
+										</tr>
+										<tr>
+											<td>IUAW45</td>
+											<td>Fiza Levine</td>
+											<td>Nausea and Vomiting</td>
+										</tr>
+										<tr>
+											<td>AHBJ76</td>
+											<td>Kevin Salter</td>
+											<td>Diarrhea and Vomiting</td>
+										</tr>
+									</tbody>
+									<tfoot>
+										<tr>
+											<td colspan="2"></td>
+										</tr>
+									</tfoot>
+								</table>
+							</div>
+						-->
+
+							<div class="table-wrapper">
+								<table class="alt" id='dataTable'>
+									<thead>
+										<tr>
+											<th>ID</th>
+											<th>Full Name</th>
+											<th>Symptoms</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+
+										</tr>
+									</tbody>
+									<tfoot>
+										<tr>
+											<td colspan="2"></td>
+										</tr>
+									</tfoot>
+								</table>
+							</div>
+
+
+					</div>
+					<div class="col-6 col-12-medium">
+						<!-- <p>-> Symptoms may appear 2-14 days after exposure to the virus. People with these symptoms may have COVID-19:</p>
+						<ul>
+  						<li>Fever or chills</li>
+  						<li>Cough</li>
+  						<li>Shortness of breath or difficulty breathing</li>
+							<li>Fatigue</li>
+  						<li>Muscle or body aches</li>
+  						<li>Headache</li>
+							<li>New loss of taste or smell</li>
+  						<li>Sore throat</li>
+  						<li>Congestion or runny nose</li>
+							<li>Nausea or vomiting</li>
+  						<li>Diarrhea</li>
+						</ul>
+						<hr />
+						<h3>Emergency Warning Signs</h3>
+						<p>Look for emergency warning signs for COVID-19. If someone is showing any of these signs, seek emergency medical care immediately:</p>
+						<ul>
+  						<li>Trouble breathing</li>
+  						<li>Persistent pain or pressure in the chest</li>
+  						<li>New confusion</li>
+							<li>Inability to wake or stay awake</li>
+  						<li>Bluish lips or face</li>
+						</ul>
+						<p>Call your medical provider for any other symptoms that are severe or concerning to you.</p>  -->
+					</div>
+				</div>
+			</section>
+
+
+
+			<script>
+
+			var database = firebase.database();
+			var arrayOfPatients = new Array();
+			getData();
+			//alert(arrayOfPatients[0].id);
+
+
+
+			// --------------------- Ready Data ---------------------- //
+			var patientID, patientFullName, patientSymptoms;
+			function ready() {
+				patientID = document.getElementById('patientIDTextField').value;
+				patientFullName = document.getElementById('patientFullNameTextField').value;
+				patientSymptoms = document.getElementById('patientSymptomsTextField').value;
+			}
+
+
+			// --------------------- Get Data ---------------------- //
+			function getData() {
+
+	      firebase.database().ref('patients/').once('value', function(snapshot) {
+	        snapshot.forEach(function(childSnapshot) {
+	          var childKey = childSnapshot.key;  // the id
+	          var childData = childSnapshot.val();  // the object containing the data
+						//alert("ChildKey: " + childKey + " ,ChildData: " + childData);
+						arrayOfPatients.push(childData);  // To access the data: e.g. arrayOfPatients[0].id;
+	          //document.getElementById("data").innerHTML = childData['name'] + ", " + childData['age'];
+	        })
+					var table = document.getElementById('dataTable');
+
+					// var numberOfRows = document.getElementById("dataTable").rows.length;
+					// //alert(numberOfRows);
+					// var j;
+					// for (j = numberOfRows; j > 1; j--) {
+					// 	table.deleteRow(j - 1);
+					// }
+					//table.deleteRow();
+
+					var i;
+					for (i = 0; i < arrayOfPatients.length; i++) {
+						var row = table.insertRow(i + 1);
+
+						var cell1 = row.insertCell(0);
+						var cell2 = row.insertCell(1);
+						var cell3 = row.insertCell(2);
+
+						cell1.innerHTML = arrayOfPatients[i].id;
+						cell2.innerHTML = arrayOfPatients[i].fullname;
+						cell3.innerHTML = arrayOfPatients[i].symptoms;
+					}
+	      })
+	    }
+
+
+			// --------------------- Refresh Table ---------------------- //
+			document.getElementById('refreshTableBtn').onclick = function() {
+				window.location.reload();
+			}
+
+
+			// --------------------- Create Table ---------------------- //
+			// var table = document.getElementById('dataTable');
+			//
+			// //alert(arrayOfPatients.length);
+			// //alert(arrayOfPatients[0].id);
+			//
+			// var i;
+			// for (i = 0; i < arrayOfPatients.length; i++) {
+			// 	var row = table.insertRow(i + 1);
+			//
+			// 	var cell1 = row.insertCell(0);
+			// 	var cell2 = row.insertCell(1);
+			// 	var cell3 = row.insertCell(2);
+			//
+			// 	cell1.innerHTML = arrayOfPatients[i].id;
+			// 	cell2.innerHTML = arrayOfPatients[i].fullname;
+			// 	cell3.innerHTML = arrayOfPatients[i].symptoms;
+			// }
+
+
+			// var row = table.insertRow(1);
+			//
+			// var cell1 = row.insertCell(0);
+			// var cell2 = row.insertCell(1);
+			// var cell3 = row.insertCell(2);
+			//
+			// cell1.innerHTML = "NEW CELL1";
+			// cell2.innerHTML = "NEW CELL2";
+			// cell3.innerHTML = "NEW CELL3";
+			//
+			//
+			// var row2 = table.insertRow(2);
+			// var cell4 = row2.insertCell(0);
+			// var cell5 = row2.insertCell(1);
+			// var cell6 = row2.insertCell(2);
+			//
+			// cell4.innerHTML = "NEW CELL4";
+			// cell5.innerHTML = "NEW CELL5";
+			// cell6.innerHTML = "NEW CELL6";
+
+
+
+			//--------------------- Add Patient ---------------------- //
+			document.getElementById('addPatientBtn').onclick = function() {
+				ready();
+
+				database.ref().child("patients").orderByChild("id").equalTo(patientID).once("value",snapshot => {
+					if (snapshot.exists()){
+						const userData = snapshot.val();
+						alert("A patient with that ID is already in the system!");
+					} else {
+
+						if (patientID === "" || patientFullName === "" || patientSymptoms === "") {
+								alert("You must fill out everything to continue!");
+
+							//window.location.href = 'DashboardPage.html';
+						} else {
+								database.ref('patients/'+patientID).set({
+									id: patientID,
+									fullname: patientFullName,
+									symptoms: patientSymptoms
+									});
+								alert("Patient Added");
+						}
+
+					}
+				});
+
+				document.getElementById('patientIDTextField').value = "";
+				document.getElementById('patientFullNameTextField').value = "";
+				document.getElementById('patientSymptomsTextField').value = "";
+				//getData();
+				//window.location.reload();
+			}
+
+			//--------------------- Get Patient ---------------------- //
+			document.getElementById('getPatientBtn').onclick = function() {
+				ready();
+
+				database.ref().child("patients").orderByChild("id").equalTo(patientID).once("value",snapshot => {
+					if (snapshot.exists()){
+						const userData = snapshot.val();
+
+						database.ref('patients/'+patientID).on('value', function(snapshot) {
+								var fullNameInDB = snapshot.val().fullname;
+								var symptomsInDB = snapshot.val().symptoms;
+
+								document.getElementById('patientFullNameTextField').value = fullNameInDB;
+								document.getElementById('patientSymptomsTextField').value = symptomsInDB;
+
+						});
+
+					} else {
+						alert("A patient with that ID is not in the system");
+					}
+				});
+
+			}
+
+
+			//--------------------- Update Patient ---------------------- //
+			document.getElementById('updatePatientBtn').onclick = function() {
+				ready();
+
+				database.ref().child("patients").orderByChild("id").equalTo(patientID).once("value",snapshot => {
+					if (snapshot.exists()) {
+						const userData = snapshot.val();
+
+						if (patientID === "" || patientFullName === "" || patientSymptoms === "") {
+								alert("You must fill out everything to continue!");
+						} else {
+							database.ref('patients/'+patientID).update({
+								fullname: patientFullName,
+								symptoms: patientSymptoms
+								});
+							alert("Patient Updated");
+						}
+
+					} else {
+						alert("A patient with that ID is not in the system!");
+					}
+				});
+				//getData();
+				//window.location.reload();
+			}
+
+			//--------------------- Delete Patient ---------------------- //
+			document.getElementById('deletePatientBtn').onclick = function() {
+				ready();
+
+				database.ref().child("patients").orderByChild("id").equalTo(patientID).once("value",snapshot => {
+					if (snapshot.exists()) {
+						const userData = snapshot.val();
+
+						database.ref('patients/'+patientID).remove();
+						alert("Patient Deleted");
+
+						document.getElementById('patientIDTextField').value = "";
+						document.getElementById('patientFullNameTextField').value = "";
+						document.getElementById('patientSymptomsTextField').value = "";
+
+					} else {
+						alert("A patient with that ID is not in the system!");
+					}
+				});
+				// getData();
+				//window.location.reload();
+				//return false;
+			}
+
+			//--------------------- Reset ---------------------- //
+			document.getElementById('resetBtn').onclick = function() {
+				document.getElementById('patientIDTextField').value = "";
+				document.getElementById('patientFullNameTextField').value = "";
+				document.getElementById('patientSymptomsTextField').value = "";
+			}
+
+			</script>
+
+		<!-- Scripts -->
+			<script src="../../js/jquery.min.js"></script>
+			<script src="../../js/browser.min.js"></script>
+			<script src="../../js/breakpoints.min.js"></script>
+			<script src="../../js/util.js"></script>
+			<script src="../../js/main2.js"></script>
+
+	</body>
+</html>

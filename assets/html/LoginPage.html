@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Data Helper Login</title>
+    <link rel="stylesheet" href="../css/loginPageStyle.css">
+
+</head>
+<body>
+
+
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase.js"></script>
+
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+       https://firebase.google.com/docs/web/setup#available-libraries -->
+  <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-analytics.js"></script>
+
+  <script>
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    var firebaseConfig = {
+      apiKey: "AIzaSyAjW5prWHsUS02zR2Y23j1c52RkCeLMKzA",
+      authDomain: "covid19datahelper.firebaseapp.com",
+      databaseURL: "https://covid19datahelper.firebaseio.com",
+      projectId: "covid19datahelper",
+      storageBucket: "covid19datahelper.appspot.com",
+      messagingSenderId: "475141461931",
+      appId: "1:475141461931:web:235887f78049b9ae0224ee",
+      measurementId: "G-LNCWFJ567R"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+
+    </script>
+
+
+    <div class="hero">
+        <div class="form-box">
+            <div class="button-box">
+                <div id="btn"></div>
+                <button type="button" class="toggle-btn" onclick="login()">Log In</button>
+                <button type="button" class="toggle-btn" onclick="register()">Register</button>
+            </div>
+            <div class="social-icons">
+                <img src="../../images/fb.png">
+                <img src="../../images/tw.png">
+                <img src="../../images/gp.png">
+            </div>
+
+            <form id="login" class="input-group">
+                <input type="text" id="userIDLogin" class="input-field" placeholder="User ID" required>
+                <input type="text" id="passwordIDLogin" class="input-field" placeholder="Enter Password" required>
+                <input type="checkbox" class="check-box"><span>Remember Password</span>
+                <button id="loginUserBtn" type="button" class="submit-btn">Log in</button>
+                
+            </form>
+
+            <form id="register" class="input-group">
+                <input id="userIDRegister" type="text" class="input-field" placeholder="User ID" required>
+                <input id="emailIDRegister" type="email" class="input-field" placeholder="Email ID" required>
+                <input id="passwordIDRegister" type="text" class="input-field" placeholder="Enter Password" required>
+                <input type="checkbox" id="checkboxTermsAndConditions" class="check-box"><span>I agree to the terms & conditions</span>
+                <button type="button" id="registerUserBtn" class="submit-btn">Register</button>
+
+            </form>
+
+
+        </div>
+    </div>
+
+    <script>
+        var x = document.getElementById("login");
+        var y = document.getElementById("register");
+        var z = document.getElementById("btn");
+
+        function register() {
+            x.style.left = "-400px";
+            y.style.left = "50px";
+            z.style.left = "110px";
+        }
+
+        function login() {
+            x.style.left = "50px";
+            y.style.left = "450px";
+            z.style.left = "0";
+        }
+
+        var database = firebase.database();
+
+        // --------------------- Ready Data to Register ---------------------- //
+        var userID, emailID, passwordID;
+        function ready() {
+          userID = document.getElementById('userIDRegister').value;
+          emailID = document.getElementById('emailIDRegister').value;
+          passwordID = document.getElementById('passwordIDRegister').value;
+        }
+
+        // --------------------- Ready Data to Login ---------------------- //
+        var userIDLogin, passwordIDLogin;
+        function readyLogin() {
+          userIDLogin = document.getElementById('userIDLogin').value;
+          passwordIDLogin = document.getElementById('passwordIDLogin').value;
+        }
+
+        //--------------------- Register User ---------------------- //
+        document.getElementById('registerUserBtn').onclick = function() {
+          ready();
+
+          database.ref().child("users").orderByChild("username").equalTo(userID).once("value",snapshot => {
+            if (snapshot.exists()){
+              const userData = snapshot.val();
+              alert("Username already exists");
+            } else {
+
+              if (document.getElementById("checkboxTermsAndConditions").checked) {
+                  database.ref('users/'+userID).set({
+                  username: userID,
+                  email: emailID,
+                  password: passwordID
+                });
+                window.location.href = 'DashboardPage.html';
+              } else {
+                  alert("You must accept the terms & conditions to continue!");
+              }
+
+            }
+          });
+
+        }
+
+
+        //--------------------- Login ---------------------- //
+        document.getElementById('loginUserBtn').onclick = function() {
+          readyLogin();
+
+          database.ref().child("users").orderByChild("username").equalTo(userIDLogin).once("value",snapshot => {
+            if (snapshot.exists()){
+              const userData = snapshot.val();
+
+              database.ref('users/'+userIDLogin).on('value', function(snapshot) {
+                  var passwordInDB = snapshot.val().password;
+                  if (passwordIDLogin.localeCompare(passwordInDB) === 0) {
+                    window.location.href = 'DashboardPage.html';
+                  } else {
+                    alert("Password is Wrong! Try Again.");
+                  }
+              });
+
+            } else {
+              alert("Username Does Not exist! Try Again.");
+            }
+          });
+
+        }
+
+
+    </script>
+
+
+
+</body>
+</html>
